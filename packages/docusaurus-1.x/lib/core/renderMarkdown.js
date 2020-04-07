@@ -24,7 +24,7 @@ const alias = {
 };
 
 class MarkdownRenderer {
-  constructor() {
+  constructor(metadata) {
     const siteConfig = require(`${CWD}/siteConfig.js`);
     let markdownOptions = {
       // Highlight.js expects hljs css classes on the code element.
@@ -110,7 +110,7 @@ class MarkdownRenderer {
     // Allow client sites to register their own plugins
     if (siteConfig.markdownPlugins) {
       siteConfig.markdownPlugins.forEach((plugin) => {
-        md.use(plugin);
+        md.use(plugin, metadata);
       });
     }
 
@@ -126,6 +126,6 @@ class MarkdownRenderer {
   }
 }
 
-const renderMarkdown = new MarkdownRenderer();
+const renderMarkdown = (metadata) => new MarkdownRenderer(metadata);
 
-module.exports = (source) => renderMarkdown.toHtml(source);
+module.exports = (source, metadata) => renderMarkdown(metadata).toHtml(source);

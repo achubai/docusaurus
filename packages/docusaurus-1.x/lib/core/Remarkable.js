@@ -14,7 +14,7 @@ class Remarkable extends React.Component {
       return (
         <span
           dangerouslySetInnerHTML={{
-            __html: renderMarkdown(this.props.source),
+            __html: renderMarkdown(this.props.source, this.props.metadata),
           }}
         />
       );

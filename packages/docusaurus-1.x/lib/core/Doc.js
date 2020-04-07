@@ -244,7 +244,9 @@ class Doc extends React.Component {
           )}
         </header>
         <article>
-          <MarkdownBlock>{this.renderContent()}</MarkdownBlock>
+          <MarkdownBlock metadata={this.props.metadata}>
+            {this.renderContent()}
+          </MarkdownBlock>
         </article>
       </div>
     );
